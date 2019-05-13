@@ -39,7 +39,8 @@ void loop() {
   Serial.print(count);
   Serial.print(", lines/sec=");
   Serial.println(count_per_second);
-  count = count + 1;
+  if ( Serial.availableForWrite() > 15 ) // skip count inc 
+    count = count + 1;
   uint32_t msec = millis();
   if (msec - prior_msec > 1000) {
     // when 1 second as elapsed, update the lines/sec count
